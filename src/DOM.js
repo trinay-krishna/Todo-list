@@ -1,3 +1,5 @@
+import StorageModule from "./StorageModule";
+
 const Dom=(function(){
     let taskList=null;
 
@@ -18,8 +20,8 @@ const Dom=(function(){
         if(!taskList)
             taskList=document.querySelector('.task-list');
         taskList.textContent="";
-        for(let i=0;i<localStorage.length;i++){
-            let TodoString=localStorage.getItem(localStorage.key(i));
+        for(let i=0;i<StorageModule.length;i++){
+            let TodoString=StorageModule.retrieveItem(StorageModule.key(i));
             let Todo=JSON.parse(TodoString);
             console.log(Todo.title);
             addTodo(Todo);

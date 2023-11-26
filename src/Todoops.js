@@ -1,13 +1,14 @@
 import DOM from './DOM.js';
+import StorageModule from './StorageModule.js';
 let id=0;
 function addTodo(Todo){
     const TodoString=JSON.stringify(Todo);
-    localStorage.setItem(`${id++}`,TodoString);
+    StorageModule.addItem(id++,TodoString);
     DOM.renderList();
 }
 
 function retrieveTodo(id){
-    const Todo=JSON.parse(localStorage.getItem(`${id}`));
+    const Todo=JSON.parse(StorageModule.retrieveItem(id));
     return Todo;
 
 }
