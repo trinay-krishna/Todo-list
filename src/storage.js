@@ -1,7 +1,9 @@
-
+import DOM from './DOM.js';
+let id=0;
 function addTodo(Todo){
     const TodoString=JSON.stringify(Todo);
-    localStorage.setItem("1",TodoString);
+    localStorage.setItem(`${id++}`,TodoString);
+    DOM.renderList();
 }
 
 function retrieveTodo(id){
