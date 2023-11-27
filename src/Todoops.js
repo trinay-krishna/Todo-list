@@ -1,15 +1,16 @@
 import DOM from './DOM.js';
 import StorageModule from './StorageModule.js';
 import Todo from './Todo.js';
-let id=0;
+import Project from './projOps';
+
 function addTodo(Todo){
-    const TodoString=JSON.stringify(Todo);
-    StorageModule.addItem(id++,TodoString);
+    const key=Project.getSelectedKey();
+    StorageModule.pushObject(key,Todo);
     DOM.addTodo(Todo);
 }
 
 function retrieveTodo(id){
-    const TodoObject=JSON.parse(StorageModule.retrieveItem(id));
+    const TodoObject=StorageModule.retrieveItem(id);
     return TodoObject;
 
 }

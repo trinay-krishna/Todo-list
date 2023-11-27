@@ -1,4 +1,5 @@
 import Dialog from "./Dialog";
+import Project from "./projOps";
 
 const projDialogBox=(function(){
     const dialog=document.querySelector('#projDialog');
@@ -23,7 +24,7 @@ const projDialogBox=(function(){
         (event)=>{
             event.preventDefault();
             if(Dialog.isInputsFilled(inputs)){
-                console.log(inputs[0].value);
+                Project.addProject(inputs[0].value);
                 dialog.close();
             }
         }

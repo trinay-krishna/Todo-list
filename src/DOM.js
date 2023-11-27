@@ -1,7 +1,9 @@
 import StorageModule from "./StorageModule";
+import Project from "./projOps";
 
 const DOM=(function(){
     let taskList=null;
+    let projectList=null;
 
     function addTodo(Todo){
         if(!taskList)
@@ -16,16 +18,27 @@ const DOM=(function(){
         taskList.appendChild(listItem);
     }
 
-    function renderList(){
+    function renderList(key){
+        if(!key)
+            return;
         if(!taskList)
             taskList=document.querySelector('.task-list');
         taskList.textContent="";
-        for(let i=0;i<StorageModule.length;i++){
-            let TodoString=StorageModule.retrieveItem(StorageModule.key(i));
-            let Todo=JSON.parse(TodoString);
-            console.log(Todo.title);
-            addTodo(Todo);
+        const list=StorageModule.retrieveItem(key);
+        list.forEach(
+            (Todo)=>addTodo(Todo)
+        );
+    }
+
+    function renderProjectList(){
+        if(!projectList)
+            projectList=document.querySelector('#project-list');
+        projectList.textContent="";
+        for(let i=0;i<StorageModule.length();i++){
+            const [name,index]=(StorageModule.key(i)).split("%$%");
+            addProject(index,name);
         }
+        renderList(Project.getSelectedKey());
     }
 
     function markInvalid(element){
@@ -36,7 +49,34 @@ const DOM=(function(){
         element.style.border="";
     }
 
-    return {addTodo,renderList,markInvalid,removeMark};
+    function addProject(index,name){
+        if(!projectList)
+            projectList=document.querySelector('#project-list');
+        const key=`${name}%$%${index}`;
+        const listItem=document.createElement('li');
+        const projBtn=document.createElement('button');
+        projBtn.setAttribute('data-proj',key);
+        projBtn.textContent=name;
+        highlightSelectedBtn(projBtn);
+
+        listItem.appendChild(projBtn);
+        projectList.appendChild(listItem);
+        renderList(key);
+    }
+
+    function highlightSelectedBtn(selectedBtn){
+        const prevSelectedKey=Project.getSelectedKey();
+        if(prevSelectedKey!==""){
+            const prevSelectedBtn=document.querySelector(`button[data-proj="${prevSelectedKey}"]`);
+            prevSelectedBtn.classList="";
+        }
+        selectedBtn.classList="highlight";
+        const selectedKey=selectedBtn.getAttribute('data-proj');
+        Project.setSelectedKey(selectedKey);
+    }
+
+
+    return {addTodo,renderList,markInvalid,removeMark,addProject,renderProjectList,highlightSelectedBtn};
 })();
 
 export default DOM;

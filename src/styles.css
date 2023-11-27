@@ -54,7 +54,7 @@ label{
     padding: 10px;
 }
 
-.proj-list button{
+.proj-section button{
     text-align: left;
     border: none;
     padding: 5px 10px;
@@ -64,6 +64,9 @@ label{
     color: white;
     font-size: 1.2rem;
     &:hover{
+        background-color: rgb(79, 179, 226);
+    }
+    &.highlight{
         background-color: rgb(79, 179, 226);
     }
 }
@@ -83,13 +86,13 @@ label{
 }
 
 
-.proj-list >ul{
+.proj-section >ul{
     display: flex;
     flex-direction: column;
     gap: 13px;
 }
 
-.proj-list >h3{
+.proj-section >h3{
     font-size: 2.1rem;
     text-shadow: 2px 2px black;
 }

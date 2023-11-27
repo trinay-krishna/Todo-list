@@ -1,18 +1,31 @@
 const StorageModule=(function(){
-    let length=localStorage.length;
+    
+    function length(){
+        return localStorage.length;
+    }
+
     function addItem(id,item){
+        item=JSON.stringify(item);
         localStorage.setItem(`${id}`,item);
     }
     
     function retrieveItem(key){
-        return localStorage.getItem(key);
+        const resultString=localStorage.getItem(key);
+        const result=JSON.parse(resultString);
+        return result;
     }
 
     function key(i){
         return localStorage.key(i)
     }
 
-    return {addItem,retrieveItem,key,length};
+    function pushObject(key,object){
+        const list=retrieveItem(key);
+        list.push(object);
+        addItem(key,list);
+    }
+
+    return {addItem,retrieveItem,key,length,pushObject};
 })();
 
 export default StorageModule;
