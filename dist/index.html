@@ -28,25 +28,23 @@
             <h2>Tasks</h2>
             <ul class="task-list">
                 <li>
-                    <p class="task">Task1</p>
-                </li>
-                <li>
-                    <p class="task">Task2</p>
-                </li>
-                <li>
-                    <p class="task">Task3</p>
-                </li>
-                <li>
-                    <p class="task">Task4</p>
-                </li>
-                <li>
-                    <p class="task">Task5</p>
+                    <div class="task">
+                        <div>
+                            <p>Laundry</p>
+                            <p>Do the Laundry</p>
+                        </div>
+                        <span>
+                            <button>✓</button>
+                            <button><img src="../src/trash-solid.svg" height="20px" width="10px"></button>
+                            <button><img src="../src/pen-solid.svg" height="20px" width="10px"></button>
+                        </span>
+                    </div>
                 </li>
                 
             </ul>
         </section>
 
-        <button id="add-task">+ Add Task</button>
+        <button id="add-task">+</button>
     </div>
     <dialog id="taskDiag">
         <form method="dialog">
@@ -58,9 +56,9 @@
             <input type="date" id="due" required>
             <label for="priority">Priority:</label>
             <select id="priority">
-                <option value="1">Medium</option>
-                <option value="2">High</option>
-                <option value="0">Low</option>
+                <option value="orange">Medium</option>
+                <option value="red">High</option>
+                <option value="blue">Low</option>
             </select>
             <button id="close">Close</button>
             <button>Add</button>

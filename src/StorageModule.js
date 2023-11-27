@@ -22,7 +22,9 @@ const StorageModule=(function(){
     function pushObject(key,object){
         const list=retrieveItem(key);
         list.push(object);
+        const newLength=list.length;
         addItem(key,list);
+        return newLength;
     }
 
     return {addItem,retrieveItem,key,length,pushObject};

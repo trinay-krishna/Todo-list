@@ -1,21 +1,65 @@
 import StorageModule from "./StorageModule";
-import Project from "./projOps";
+import Project from "./projOps.js";
+import Edit from './pen-solid.svg';
+import Delete from './trash-solid.svg';
+
 
 const DOM=(function(){
     let taskList=null;
     let projectList=null;
 
-    function addTodo(Todo){
+    function addTodo(Todo,newLength){
         if(!taskList)
             taskList=document.querySelector('.task-list');
         const listItem=document.createElement('li');
 
-        const para=document.createElement('p');
-        para.textContent=Todo.title;
-        para.classList="task";
-
-        listItem.appendChild(para);
+        const div=createTodoItem(Todo);
+        div.setAttribute('data-index',newLength-1);
+        div.style.borderLeft=`7px solid ${Todo.priority}`;
+        listItem.appendChild(div);
         taskList.appendChild(listItem);
+    }
+
+    function createTodoItem(Todo){
+        const div=document.createElement('div');
+        div.classList="task";
+
+        const infoDiv=document.createElement('div');
+        const title=document.createElement('p');
+        const description=document.createElement('p');
+        title.textContent=Todo.title;
+        description.textContent=Todo.description;
+
+        infoDiv.appendChild(title);
+        infoDiv.appendChild(description);
+
+        const buttonSpan=document.createElement('span');
+        const doneBtn=document.createElement('button');
+        doneBtn.textContent="✓";
+        const deleteBtn=document.createElement('button');
+        const editBtn=document.createElement('button');
+
+        const deleteImage=new Image();
+        deleteImage.src=Delete;
+        deleteImage.height=20;
+        deleteImage.width=10;
+        const editImage=new Image();
+        editImage.src=Edit;
+        editImage.height=20;
+        editImage.width=10;
+
+        deleteBtn.appendChild(deleteImage);
+        editBtn.appendChild(editImage);
+
+        buttonSpan.appendChild(doneBtn);
+        buttonSpan.appendChild(deleteBtn);
+        buttonSpan.appendChild(editBtn);
+
+        div.appendChild(infoDiv);
+        div.appendChild(buttonSpan);
+
+        return div;
+
     }
 
     function renderList(key){
@@ -26,7 +70,7 @@ const DOM=(function(){
         taskList.textContent="";
         const list=StorageModule.retrieveItem(key);
         list.forEach(
-            (Todo)=>addTodo(Todo)
+            (Todo,index)=>addTodo(Todo,index+1)
         );
     }
 

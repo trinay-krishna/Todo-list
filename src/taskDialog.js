@@ -9,7 +9,7 @@ const taskDialogBox=(function(){
     const diagAdd=document.querySelector('#close + button');
 
     const diagSelect=document.querySelector('#priority');
-    let selectVal=1;
+    let selectVal="orange";
 
     const inputs=document.querySelectorAll('#taskDiag input');
 
