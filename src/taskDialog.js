@@ -1,25 +1,20 @@
 import { createTodo,addTodo } from "./Todoops";
 import compareAsc from "date-fns/compareAsc";
 import DOM from "./DOM";
+import Dialog from "./Dialog";
 
 const taskDialogBox=(function(){
-    const dialog=document.querySelector('dialog');
+    const dialog=document.querySelector('#taskDiag');
     const diagClose=document.querySelector('#close');
     const diagAdd=document.querySelector('#close + button');
 
     const diagSelect=document.querySelector('#priority');
     let selectVal=1;
 
-    const inputs=document.querySelectorAll('#diag input');
+    const inputs=document.querySelectorAll('#taskDiag input');
 
     function openDialog(){
-        inputs.forEach(
-            (input)=>{
-                input.value="";
-                DOM.removeMark(input);
-            }
-        );
-
+        Dialog.clearInputs(inputs);
         dialog.showModal();
     }
 
@@ -40,7 +35,7 @@ const taskDialogBox=(function(){
         (event)=>{
             event.preventDefault();
             if(checkInputs()){
-                clearInvalidMarks();
+                Dialog.clearInvalidMarks(inputs);
                 const inputString=fetchInputs();
                 addTodo(createTodo(inputString));
                 dialog.close();
@@ -66,33 +61,18 @@ const taskDialogBox=(function(){
     }
 
     function checkInputs(){
-        let isValid=true;
-        inputs.forEach(
-            (input)=>{
-                if(input.value==""){
-                    isValid=false;
-                    DOM.markInvalid(input);
-                }
-                else
-                    DOM.removeMark(input);
-            }
-        );
+        let isValid=Dialog.isInputsFilled(inputs);
         if(isValid){
             const date=inputs[2].value;
             const DateObj=new Date(date);
-            DateObj.setHours(11,59,59,99);
+            DateObj.setHours(23,59,59,99);
+            console.log(DateObj,new Date());
             if(compareAsc(DateObj,new Date())<0){
                 isValid=false;
                 DOM.markInvalid(inputs[2]);
             }
         }
         return isValid;
-    }
-
-    function clearInvalidMarks(){
-        inputs.forEach(
-            (input)=>DOM.removeMark(input)
-        );
     }
 
     return {openDialog};
