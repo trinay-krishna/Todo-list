@@ -51,8 +51,25 @@
             </ul>
         </section>
 
-        <button id="add-task">+</button>
+        <button id="add-task">+ Add Task</button>
     </div>
-    
+    <dialog id="diag">
+        <form method="dialog">
+            <label for="title">Title:</label>
+            <input type="text" id="title"placeholder="Harry Potter" autofocus required>
+            <label for="des">Description:</label>
+            <input type="text" id="des" required>
+            <label for="due">Due Date:</label>
+            <input type="date" id="due" required>
+            <label for="priority">Priority:</label>
+            <select id="priority">
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+                <option value="0">Low</option>
+            </select>
+            <button id="close">Close</button>
+            <button>Add</button>
+        </form>
+    </dialog>
 </body>
 </html>

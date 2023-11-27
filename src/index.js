@@ -1,8 +1,13 @@
 import Todo from './Todo.js';
 import './styles.css';
-import { addTodo,retrieveTodo } from './Todoops.js';
+import { addTodo,createTodo,retrieveTodo } from './Todoops.js';
+import taskDialogBox from './taskDialog.js';
+
+
 
 const p=new Todo("Title","Des","tom",2);
 const p2=new Todo("Title2","Des2","tom2",3);
-addTodo(p2);
-addTodo(p);
+
+const addTaskBtn=document.querySelector('#add-task');
+
+addTaskBtn.addEventListener('click',taskDialogBox.openDialog);

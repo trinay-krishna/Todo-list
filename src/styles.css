@@ -21,6 +21,20 @@ ul{
     list-style: none;
 }
 
+input,select{
+    width: 90%;
+}
+
+label{
+    display: block;
+}
+
+#priority{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
 .header{
     text-align: center;
     grid-row: 1;

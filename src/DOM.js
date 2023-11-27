@@ -1,6 +1,6 @@
 import StorageModule from "./StorageModule";
 
-const Dom=(function(){
+const DOM=(function(){
     let taskList=null;
 
     function addTodo(Todo){
@@ -28,7 +28,15 @@ const Dom=(function(){
         }
     }
 
-    return {addTodo,renderList};
+    function markInvalid(element){
+        element.style.border="2px solid red";
+    }
+
+    function removeMark(element){
+        element.style.border="";
+    }
+
+    return {addTodo,renderList,markInvalid,removeMark};
 })();
 
-export default Dom;
+export default DOM;
