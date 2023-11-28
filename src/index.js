@@ -3,13 +3,16 @@ import taskDialogBox from './taskDialog.js';
 import projDialogBox from './projDialog.js';
 import DOM from './DOM.js';
 import {deleteTodo} from './Todoops';
+import Dialog from './Dialog';
 
 const addTaskBtn=document.querySelector('#add-task');
 const addProjBtn=document.querySelector('.proj-add');
+const deleteProjBtn=document.querySelector('.proj-delete');
 
 DOM.renderProjectList();
 addTaskBtn.addEventListener('click',taskDialogBox.openDialog);
 addProjBtn.addEventListener('click',projDialogBox.openDialog);
+deleteProjBtn.addEventListener('click',projDialogBox.openConfirmDialog);
 
 const projectList=document.querySelector('#project-list');
 projectList.addEventListener('click',

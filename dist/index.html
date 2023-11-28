@@ -20,7 +20,10 @@
             </ul>
         </section>
 
-        <button class="proj-add">+ Add Project</button>
+        <div class="proj-button-container">
+            <button class="proj-add">+ Add Project</button>
+            <button class="proj-delete">Delete Project</button>
+        </div>
     </div>
 
     <div class="main-content">
@@ -49,7 +52,7 @@
     <dialog id="taskDiag">
         <form method="dialog">
             <label for="title">Title:</label>
-            <input type="text" id="title"placeholder="Harry Potter" autofocus required>
+            <input type="text" id="title" autofocus required>
             <label for="des">Description:</label>
             <input type="text" id="des" required>
             <label for="due">Due Date:</label>
@@ -70,6 +73,13 @@
             <input type="text" id="proj-title">
             <button id="proj-close">Close</button>
             <button id="proj-append">Add</button>
+        </form>
+    </dialog>
+    <dialog id="confirmDialog">
+        <form method="dialog">
+            <p>Do you want to delete this project?</p>
+            <button>Close</button>
+            <button id="confirmYes">Yes</button>
         </form>
     </dialog>
 </body>

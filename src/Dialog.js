@@ -30,6 +30,7 @@ const Dialog=(function(){
             }
         );
     }
+
     return {isInputsFilled,clearInvalidMarks,clearInputs};
 })();
 

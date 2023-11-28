@@ -62,6 +62,10 @@ label{
     padding: 10px;
 }
 
+.proj-button-container{
+    display: flex;
+}
+
 .proj-section button{
     text-align: left;
     border: none;
@@ -79,9 +83,10 @@ label{
     }
 }
 
-.proj-add{
+.proj-add,.proj-delete{
     margin: 0 auto;
-    width: 50%;
+    margin-bottom: 10px;
+    flex: 1;
     border: none;
     background-color: transparent;
     color: white;

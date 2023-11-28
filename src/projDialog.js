@@ -3,10 +3,13 @@ import Project from "./projOps";
 
 const projDialogBox=(function(){
     const dialog=document.querySelector('#projDialog');
+    const confirmDialogBox=document.querySelector('#confirmDialog');
 
     const closeBtn=document.querySelector('#proj-close');
     const addBtn=document.querySelector('#proj-append');
     const inputs=document.querySelectorAll('#projDialog input');
+
+    const confirmYes=document.querySelector('#confirmYes');
 
     function openDialog(){
         Dialog.clearInputs(inputs);
@@ -30,7 +33,19 @@ const projDialogBox=(function(){
         }
     );
 
-        return {openDialog};
+    confirmYes.addEventListener('click',
+        (event)=>{
+            event.preventDefault();
+            Project.deleteProject();
+            confirmDialogBox.close();
+        }
+    )
+
+    function openConfirmDialog(){
+        confirmDialogBox.showModal();
+    }
+
+    return {openDialog,openConfirmDialog};
 
 })();
 

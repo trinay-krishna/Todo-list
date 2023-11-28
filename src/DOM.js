@@ -66,11 +66,11 @@ const DOM=(function(){
     }
 
     function renderList(key){
-        if(!key)
-            return;
         if(!taskList)
             taskList=document.querySelector('.task-list');
         taskList.textContent="";
+        if(!key)
+            return;
         const list=StorageModule.retrieveItem(key);
         list.forEach(
             (Todo,index)=>addTodo(Todo,index+1)
@@ -119,15 +119,13 @@ const DOM=(function(){
         }
         selectedBtn.classList="highlight";
         const selectedKey=selectedBtn.getAttribute('data-proj');
+        console.log(selectedKey);
         Project.setSelectedKey(selectedKey);
     }
 
-    function handleTaskClick(event){
-
-    }
 
 
-    return {addTodo,renderList,markInvalid,removeMark,addProject,renderProjectList,highlightSelectedBtn,handleTaskClick};
+    return {addTodo,renderList,markInvalid,removeMark,addProject,renderProjectList,highlightSelectedBtn};
 })();
 
 export default DOM;

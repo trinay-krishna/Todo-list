@@ -18,7 +18,15 @@ const Project=(function(){
         selected=key;
     }
 
-    return {addProject,getSelectedKey,setSelectedKey};
+    function deleteProject(){
+        if(selected==="")
+            return;
+        StorageModule.deleteKey(selected);
+        selected="";
+        DOM.renderProjectList();
+    }
+
+    return {addProject,getSelectedKey,setSelectedKey,deleteProject};
 })();
 
 export default Project;

@@ -27,7 +27,11 @@ const StorageModule=(function(){
         return newLength;
     }
 
-    return {addItem,retrieveItem,key,length,pushObject};
+    function deleteKey(key){
+        localStorage.removeItem(key);
+    }
+
+    return {addItem,retrieveItem,key,length,pushObject,deleteKey};
 })();
 
 export default StorageModule;
