@@ -35,7 +35,17 @@ function editTodo(inputString){
     const key=Project.getSelectedKey();
     const list=StorageModule.retrieveItem(key);
     const newTodo=createTodo(inputString);
+    newTodo.isComplete=list[editIndex].isComplete;
     list[editIndex]=newTodo;
+    StorageModule.addItem(key,list);
+    DOM.renderList(key);
+}
+
+function toggleComplete(index){
+    const key=Project.getSelectedKey();
+    const list=StorageModule.retrieveItem(key);
+    const TodoObject=list[index];
+    TodoObject.isComplete=!TodoObject.isComplete;
     StorageModule.addItem(key,list);
     DOM.renderList(key);
 }
@@ -48,4 +58,4 @@ function setEditIndex(value){
     editIndex=value;
 }
 
-export {addTodo,createTodo,deleteTodo,editTodo,getEditIndex,setEditIndex,retrieveTodo};
+export {addTodo,createTodo,deleteTodo,editTodo,getEditIndex,setEditIndex,retrieveTodo,toggleComplete};

@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Michland';
+    src: url('Michland.woff2') format('woff2'),
+        url('Michland.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 html{
     height: 100%;
     --primary-color:rgb(24, 135, 199);
@@ -45,9 +55,10 @@ label{
     grid-column: 2;
     background-color: rgb(255, 255, 255);
     color: black;
-    font-size: 2rem;
+    font-size: 3rem;
     text-shadow: 2px 4px rgb(91, 213, 235);
     box-shadow: 0px 1px 10px black;
+    font-family: 'Michland';
 }
 .sidebar{
     position: sticky;
@@ -103,11 +114,13 @@ label{
     display: flex;
     flex-direction: column;
     gap: 13px;
+    margin-top: -70px;
 }
 
 .proj-section >h3{
-    font-size: 2.1rem;
-    text-shadow: 2px 2px black;
+    font-size: 4.5rem;
+    text-shadow: 3px 3px black;
+    font-family: 'Michland';
 }
 
 .main-content{
@@ -128,9 +141,17 @@ label{
         height: 50px;
         border-radius: 50%;
         align-self:flex-end;
+        box-shadow: 0px 0px 5px black;
     }
     >button:hover{
         background-color: rgb(14, 108, 172);
+    }
+    & h2{
+        margin: -1px 0px;
+        font-size: 5rem;
+        font-family: 'Michland';
+        font-weight: 600;
+        text-shadow: 2px 1px rgb(165, 169, 172);
     }
 }
 
@@ -176,6 +197,75 @@ label{
     & .Edit-Btn{
         border-bottom-right-radius: 9px;
         border-left: 1px solid black;
+    }
+}
+
+.logo{
+    display: flex;
+}
+
+#logo-para{
+    font-size: 3.7rem;
+    font-weight: bold;
+    margin: auto 0;
+    font-family: 'Michland';
+    color: black;
+    text-shadow: 1px 1px white;
+}
+
+.dialog {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 40px rgb(1, 39, 82);
+    font-family: 'Michland';
+    width: 300px;
+    background-color: rgb(248, 248, 248);
+    & input{
+        border-radius: 5px;
+        padding-left: 5px;
+        outline: none;
+        border: 1px solid black;
+    }
+    & label{
+        font-size: 3rem;
+        font-weight: bold;
+        margin-top: 10px;
+        text-shadow: 1px 1px rgb(202, 202, 202)
+    }
+    & button{
+        padding: 10px 30px;
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0px 0px 3px black;
+        background-color: var(--primary-color);
+        color: white;
+        font-family: 'Michland';
+        font-size: 2rem;
+        text-shadow: 2px 2px black;
+    }
+}
+
+.diag-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#confirmDialog{
+    width: 350px;
+    & p{
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+
+    }
+}
+
+#projDialog{
+    & label{
+        margin-bottom: 5px;
+    }
+    & input{
+        margin-bottom: 15px;
     }
 }
 

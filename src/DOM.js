@@ -16,6 +16,8 @@ const DOM=(function(){
         const div=createTodoItem(Todo);
         div.setAttribute('data-index',newLength-1);
         div.style.borderLeft=`7px solid ${Todo.priority}`;
+        if(Todo.isComplete)
+            div.style.borderTop="7px solid green";
         listItem.appendChild(div);
         taskList.appendChild(listItem);
     }

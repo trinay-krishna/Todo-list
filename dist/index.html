@@ -12,7 +12,8 @@
     </div>
     <div class="sidebar">
             <div class="logo">
-                TODO
+                <img src="../src/logo.png" alt="Logo" height="100px" width="150px">
+                <p id="logo-para">Todoz</p>
     </div>
         <section class="proj-section">
             <h3>Projects</h3>
@@ -49,7 +50,7 @@
 
         <button id="add-task">+</button>
     </div>
-    <dialog id="taskDiag">
+    <dialog id="taskDiag" class="dialog">
         <form method="dialog">
             <label for="title">Title:</label>
             <input type="text" id="title" autofocus required>
@@ -63,23 +64,29 @@
                 <option value="red">High</option>
                 <option value="blue">Low</option>
             </select>
-            <button id="close">Close</button>
-            <button>Add</button>
+            <div class="diag-container">
+                <button id="close">Close</button>
+                <button>Add</button>
+            </div>
         </form>
     </dialog>
-    <dialog id="projDialog">
+    <dialog id="projDialog" class="dialog">
         <form method="dialog">
             <label for="proj-title">Project Name:</label>
             <input type="text" id="proj-title">
-            <button id="proj-close">Close</button>
-            <button id="proj-append">Add</button>
+            <div class="diag-container">
+                <button id="proj-close">Close</button>
+                <button id="proj-append">Add</button>
+            </div>
         </form>
     </dialog>
-    <dialog id="confirmDialog">
+    <dialog id="confirmDialog" class="dialog">
         <form method="dialog">
             <p>Do you want to delete this project?</p>
-            <button>Close</button>
-            <button id="confirmYes">Yes</button>
+            <div class="diag-container">
+                <button>Close</button>
+                <button id="confirmYes">Yes</button>
+            </div>
         </form>
     </dialog>
 </body>

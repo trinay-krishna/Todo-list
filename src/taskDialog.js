@@ -23,7 +23,7 @@ const taskDialogBox=(function(){
 
     dialog.addEventListener('close',
         ()=>{
-            console.log("CLOSED");
+            diagAdd.textContent="Add";
         }
     );
 
@@ -43,7 +43,6 @@ const taskDialogBox=(function(){
                 if(diagAdd.textContent==="Edit"){
                     editTodo(inputString);
                     dialog.close();
-                    diagAdd.textContent="Add";
                     return;
                 }
                 addTodo(createTodo(inputString));

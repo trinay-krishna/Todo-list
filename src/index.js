@@ -2,12 +2,20 @@ import './styles.css';
 import taskDialogBox from './taskDialog.js';
 import projDialogBox from './projDialog.js';
 import DOM from './DOM.js';
-import {deleteTodo,setEditIndex,retrieveTodo} from './Todoops';
+import {deleteTodo,setEditIndex,retrieveTodo,toggleComplete, addTodo} from './Todoops';
 import Dialog from './Dialog';
+import Todo from './Todo';
+import Project from './projOps';
+import StorageModule from './StorageModule';
 
 const addTaskBtn=document.querySelector('#add-task');
 const addProjBtn=document.querySelector('.proj-add');
 const deleteProjBtn=document.querySelector('.proj-delete');
+
+if(!StorageModule.length()){
+    const defaultTodo=new Todo("Laundry","Do the Laundry","2023-11-29","orange",true);
+    StorageModule.addItem('House Work%$%0',[defaultTodo]);
+}
 
 DOM.renderProjectList();
 addTaskBtn.addEventListener('click',taskDialogBox.openDialog);
@@ -37,7 +45,7 @@ taskList.addEventListener('click',
         const button=composedPath[0].getAttribute('class');
         const firstChar=button.charAt(0);
         if(firstChar==='C')
-            console.log("Check");
+            toggleComplete(+dataIndex);
         else if(firstChar==="D")
             deleteTodo(+dataIndex);
         else{
