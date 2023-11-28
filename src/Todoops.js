@@ -3,6 +3,8 @@ import StorageModule from './StorageModule.js';
 import Todo from './Todo.js';
 import Project from './projOps.js';
 
+
+let editIndex=-1;
 function addTodo(Todo){
     const key=Project.getSelectedKey();
     const newLength=StorageModule.pushObject(key,Todo);
@@ -23,4 +25,27 @@ function deleteTodo(index){
     DOM.renderList(key);
 }
 
-export {addTodo,createTodo,deleteTodo};
+function retrieveTodo(index){
+    const key=Project.getSelectedKey();
+    const list=StorageModule.retrieveItem(key);
+    return list[index];
+}
+
+function editTodo(inputString){
+    const key=Project.getSelectedKey();
+    const list=StorageModule.retrieveItem(key);
+    const newTodo=createTodo(inputString);
+    list[editIndex]=newTodo;
+    StorageModule.addItem(key,list);
+    DOM.renderList(key);
+}
+
+function getEditIndex(){
+    return editIndex;
+}
+
+function setEditIndex(value){
+    editIndex=value;
+}
+
+export {addTodo,createTodo,deleteTodo,editTodo,getEditIndex,setEditIndex,retrieveTodo};

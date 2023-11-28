@@ -2,7 +2,7 @@ import './styles.css';
 import taskDialogBox from './taskDialog.js';
 import projDialogBox from './projDialog.js';
 import DOM from './DOM.js';
-import {deleteTodo} from './Todoops';
+import {deleteTodo,setEditIndex,retrieveTodo} from './Todoops';
 import Dialog from './Dialog';
 
 const addTaskBtn=document.querySelector('#add-task');
@@ -40,7 +40,9 @@ taskList.addEventListener('click',
             console.log("Check");
         else if(firstChar==="D")
             deleteTodo(+dataIndex);
-        else
-            console.log('Edit');
+        else{
+            setEditIndex(+dataIndex);
+            taskDialogBox.openEditDialog(retrieveTodo(+dataIndex));
+        }
     }
 );

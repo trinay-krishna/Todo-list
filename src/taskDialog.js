@@ -1,4 +1,4 @@
-import { createTodo,addTodo } from "./Todoops";
+import { createTodo,addTodo, editTodo } from "./Todoops";
 import compareAsc from "date-fns/compareAsc";
 import DOM from "./DOM";
 import Dialog from "./Dialog";
@@ -40,6 +40,12 @@ const taskDialogBox=(function(){
             if(checkInputs()){
                 Dialog.clearInvalidMarks(inputs);
                 const inputString=fetchInputs();
+                if(diagAdd.textContent==="Edit"){
+                    editTodo(inputString);
+                    dialog.close();
+                    diagAdd.textContent="Add";
+                    return;
+                }
                 addTodo(createTodo(inputString));
                 dialog.close();
             }
@@ -77,7 +83,15 @@ const taskDialogBox=(function(){
         return isValid;
     }
 
-    return {openDialog};
+    function openEditDialog(Todo){
+        diagAdd.textContent="Edit";
+        openDialog();
+        inputs[0].value=Todo.title;
+        inputs[1].value=Todo.description;
+        inputs[2].value=Todo.dueDate;
+    }
+
+    return {openDialog,openEditDialog};
 })();
 
 export default taskDialogBox;

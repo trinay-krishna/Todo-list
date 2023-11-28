@@ -119,7 +119,6 @@ const DOM=(function(){
         }
         selectedBtn.classList="highlight";
         const selectedKey=selectedBtn.getAttribute('data-proj');
-        console.log(selectedKey);
         Project.setSelectedKey(selectedKey);
     }
 
