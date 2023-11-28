@@ -161,14 +161,14 @@ label{
         border-top: 1px solid black;
         border-bottom: 1px solid black;
     }
-    >button:first-of-type{
+    & .Check-Btn{
         color: green;
         border-right: 1px solid black;
     }
     >button:hover{
         background-color: rgb(18, 100, 138);
     }
-    >button:last-of-type{
+    & .Edit-Btn{
         border-bottom-right-radius: 9px;
         border-left: 1px solid black;
     }

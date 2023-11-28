@@ -36,8 +36,11 @@ const DOM=(function(){
         const buttonSpan=document.createElement('span');
         const doneBtn=document.createElement('button');
         doneBtn.textContent="✓";
+        doneBtn.classList="Check-Btn";
         const deleteBtn=document.createElement('button');
+        deleteBtn.classList="Delete-Btn";
         const editBtn=document.createElement('button');
+        editBtn.classList="Edit-Btn";
 
         const deleteImage=new Image();
         deleteImage.src=Delete;
@@ -119,8 +122,12 @@ const DOM=(function(){
         Project.setSelectedKey(selectedKey);
     }
 
+    function handleTaskClick(event){
 
-    return {addTodo,renderList,markInvalid,removeMark,addProject,renderProjectList,highlightSelectedBtn};
+    }
+
+
+    return {addTodo,renderList,markInvalid,removeMark,addProject,renderProjectList,highlightSelectedBtn,handleTaskClick};
 })();
 
 export default DOM;

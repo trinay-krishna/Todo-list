@@ -1,13 +1,8 @@
-import Todo from './Todo.js';
 import './styles.css';
 import taskDialogBox from './taskDialog.js';
 import projDialogBox from './projDialog.js';
 import DOM from './DOM.js';
-
-
-
-const p=new Todo("Title","Des","tom",2);
-const p2=new Todo("Title2","Des2","tom2",3);
+import {deleteTodo} from './Todoops';
 
 const addTaskBtn=document.querySelector('#add-task');
 const addProjBtn=document.querySelector('.proj-add');
@@ -26,4 +21,23 @@ projectList.addEventListener('click',
         DOM.highlightSelectedBtn(target);
         DOM.renderList(key);
     }
-)
+);
+
+const taskList=document.querySelector('.task-list');
+
+taskList.addEventListener('click',
+    (event)=>{
+        const composedPath=event.composedPath();
+        if(composedPath[0].tagName!=="BUTTON")
+            return;
+        const dataIndex=composedPath[2].getAttribute('data-index');
+        const button=composedPath[0].getAttribute('class');
+        const firstChar=button.charAt(0);
+        if(firstChar==='C')
+            console.log("Check");
+        else if(firstChar==="D")
+            deleteTodo(+dataIndex);
+        else
+            console.log('Edit');
+    }
+);

@@ -9,16 +9,18 @@ function addTodo(Todo){
     DOM.addTodo(Todo,newLength);
 }
 
-function retrieveTodo(id){
-    const TodoObject=StorageModule.retrieveItem(id);
-    return TodoObject;
-
-}
-
 function createTodo(inputString){
     const [title,description,due,priority]=inputString.split("|");
     const TodoObject=new Todo(title,description,due,priority);
     return TodoObject;
 }
 
-export {addTodo,retrieveTodo,createTodo};
+function deleteTodo(index){
+    const key=Project.getSelectedKey();
+    const list=StorageModule.retrieveItem(key);
+    const newList=[...list.slice(0,index),...list.slice(index+1)];
+    StorageModule.addItem(key,newList);
+    DOM.renderList(key);
+}
+
+export {addTodo,createTodo,deleteTodo};
