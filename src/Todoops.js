@@ -1,14 +1,14 @@
-import DOM from './DOM.js';
-import StorageModule from './StorageModule.js';
 import Todo from './Todo.js';
-import Project from './projOps.js';
+import {addTodoDOM,renderList} from './DOM';
+import {addItemToStorage,retrieveItemFromStorage,pushObjectToStorage} from './StorageModule';
+import {getSelectedKey} from './projOps';
 
 
 let editIndex=-1;
 function addTodo(Todo){
-    const key=Project.getSelectedKey();
-    const newLength=StorageModule.pushObject(key,Todo);
-    DOM.addTodo(Todo,newLength);
+    const key=getSelectedKey();
+    const newLength=pushObjectToStorage(key,Todo);
+    addTodoDOM(Todo,newLength);
 }
 
 function createTodo(inputString){
@@ -18,36 +18,36 @@ function createTodo(inputString){
 }
 
 function deleteTodo(index){
-    const key=Project.getSelectedKey();
-    const list=StorageModule.retrieveItem(key);
+    const key=getSelectedKey();
+    const list=retrieveItemFromStorage(key);
     const newList=[...list.slice(0,index),...list.slice(index+1)];
-    StorageModule.addItem(key,newList);
-    DOM.renderList(key);
+    addItemToStorage(key,newList);
+    renderList(key);
 }
 
 function retrieveTodo(index){
-    const key=Project.getSelectedKey();
-    const list=StorageModule.retrieveItem(key);
+    const key=getSelectedKey();
+    const list=retrieveItemFromStorage(key);
     return list[index];
 }
 
 function editTodo(inputString){
-    const key=Project.getSelectedKey();
-    const list=StorageModule.retrieveItem(key);
+    const key=getSelectedKey();
+    const list=retrieveItemFromStorage(key);
     const newTodo=createTodo(inputString);
     newTodo.isComplete=list[editIndex].isComplete;
     list[editIndex]=newTodo;
-    StorageModule.addItem(key,list);
-    DOM.renderList(key);
+    addItemToStorage(key,list);
+    renderList(key);
 }
 
 function toggleComplete(index){
-    const key=Project.getSelectedKey();
-    const list=StorageModule.retrieveItem(key);
+    const key=getSelectedKey();
+    const list=retrieveItemFromStorage(key);
     const TodoObject=list[index];
     TodoObject.isComplete=!TodoObject.isComplete;
-    StorageModule.addItem(key,list);
-    DOM.renderList(key);
+    addItemToStorage(key,list);
+    renderList(key);
 }
 
 function getEditIndex(){

@@ -1,32 +1,30 @@
-import DOM from "./DOM";
-import StorageModule from "./StorageModule";
+import {renderProjectList,addProjectDOM} from './DOM';
+import {addItemToStorage,deleteKeyFromStorage,getStorageLength} from './StorageModule';
 
-const Project=(function(){
-    let selected="";
-    function addProject(name){
-        const index=StorageModule.length();
-        const key=`${name}%$%${index}`;
-        StorageModule.addItem(key,[]);
-        DOM.addProject(index,name);
-    }
+let selected="";
+function addProject(name){
+    const index=getStorageLength();
+    const key=`${name}%$%${index}`;
+    addItemToStorage(key,[]);
+    addProjectDOM(index,name);
+}
 
-    function getSelectedKey(){
-        return selected;
-    }
+function getSelectedKey(){
+    return selected;
+}
 
-    function setSelectedKey(key){
-        selected=key;
-    }
+function setSelectedKey(key){
+    selected=key;
+}
 
-    function deleteProject(){
-        if(selected==="")
-            return;
-        StorageModule.deleteKey(selected);
-        selected="";
-        DOM.renderProjectList();
-    }
+function deleteProject(){
+    if(selected==="")
+        return;
+    deleteKeyFromStorage(selected);
+    selected="";
+    renderProjectList();
+}
 
-    return {addProject,getSelectedKey,setSelectedKey,deleteProject};
-})();
+export {addProject,getSelectedKey,setSelectedKey,deleteProject};
 
-export default Project;
+

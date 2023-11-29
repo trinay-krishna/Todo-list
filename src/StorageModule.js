@@ -1,37 +1,34 @@
-const StorageModule=(function(){
-    
-    function length(){
-        return localStorage.length;
-    }
 
-    function addItem(id,item){
-        item=JSON.stringify(item);
-        localStorage.setItem(`${id}`,item);
-    }
-    
-    function retrieveItem(key){
-        const resultString=localStorage.getItem(key);
-        const result=JSON.parse(resultString);
-        return result;
-    }
+function getStorageLength(){
+    return localStorage.length;
+}
 
-    function key(i){
-        return localStorage.key(i)
-    }
+function addItemToStorage(id,item){
+    item=JSON.stringify(item);
+    localStorage.setItem(`${id}`,item);
+}
 
-    function pushObject(key,object){
-        const list=retrieveItem(key);
-        list.push(object);
-        const newLength=list.length;
-        addItem(key,list);
-        return newLength;
-    }
+function retrieveItemFromStorage(key){
+    const resultString=localStorage.getItem(key);
+    const result=JSON.parse(resultString);
+    return result;
+}
 
-    function deleteKey(key){
-        localStorage.removeItem(key);
-    }
+function storageKey(i){
+    return localStorage.key(i)
+}
 
-    return {addItem,retrieveItem,key,length,pushObject,deleteKey};
-})();
+function pushObjectToStorage(key,object){
+    const list=retrieveItemFromStorage(key);
+    list.push(object);
+    const newLength=list.length;
+    addItemToStorage(key,list);
+    return newLength;
+}
 
-export default StorageModule;
+function deleteKeyFromStorage(key){
+    localStorage.removeItem(key);
+}
+
+export {addItemToStorage,retrieveItemFromStorage,storageKey,getStorageLength,pushObjectToStorage,deleteKeyFromStorage};
+

@@ -1,26 +1,24 @@
 import './styles.css';
-import taskDialogBox from './taskDialog.js';
-import projDialogBox from './projDialog.js';
-import DOM from './DOM.js';
-import {deleteTodo,setEditIndex,retrieveTodo,toggleComplete, addTodo} from './Todoops';
-import Dialog from './Dialog';
 import Todo from './Todo';
-import Project from './projOps';
-import StorageModule from './StorageModule';
+import {openTaskDialog,openEditDialog} from './taskDialog';
+import {openProjDialog,openConfirmDialog} from './projDialog';
+import {renderList,renderProjectList,highlightSelectedBtn} from './DOM';
+import {deleteTodo,setEditIndex,retrieveTodo,toggleComplete} from './Todoops';
+import {addItemToStorage,getStorageLength} from './StorageModule';
 
 const addTaskBtn=document.querySelector('#add-task');
 const addProjBtn=document.querySelector('.proj-add');
 const deleteProjBtn=document.querySelector('.proj-delete');
 
-if(!StorageModule.length()){
+if(!getStorageLength()){
     const defaultTodo=new Todo("Laundry","Do the Laundry","2023-11-29","orange",true);
-    StorageModule.addItem('House Work%$%0',[defaultTodo]);
+    addItemToStorage('House Work%$%0',[defaultTodo]);
 }
 
-DOM.renderProjectList();
-addTaskBtn.addEventListener('click',taskDialogBox.openDialog);
-addProjBtn.addEventListener('click',projDialogBox.openDialog);
-deleteProjBtn.addEventListener('click',projDialogBox.openConfirmDialog);
+renderProjectList();
+addTaskBtn.addEventListener('click',openTaskDialog);
+addProjBtn.addEventListener('click',openProjDialog);
+deleteProjBtn.addEventListener('click',openConfirmDialog);
 
 const projectList=document.querySelector('#project-list');
 projectList.addEventListener('click',
@@ -29,8 +27,8 @@ projectList.addEventListener('click',
         const key=target.getAttribute('data-proj');
         if(!key)
             return;
-        DOM.highlightSelectedBtn(target);
-        DOM.renderList(key);
+        highlightSelectedBtn(target);
+        renderList(key);
     }
 );
 
@@ -50,7 +48,7 @@ taskList.addEventListener('click',
             deleteTodo(+dataIndex);
         else{
             setEditIndex(+dataIndex);
-            taskDialogBox.openEditDialog(retrieveTodo(+dataIndex));
+            openEditDialog(retrieveTodo(+dataIndex));
         }
     }
 );
